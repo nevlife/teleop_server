@@ -1,0 +1,40 @@
+# =============================================================================
+# teleop_server (server-side): teleop_server + stream_server
+# Pure Python — relay / state hub, no ROS, no C++.
+# =============================================================================
+
+# --- Python ------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+.eggs/
+.pytest_cache/
+
+# --- Virtual environments (also matches symlinks pointing at one) ------------
+.venv
+.venv/
+venv
+venv/
+env/
+
+# --- IDE / editor ------------------------------------------------------------
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# --- OS ----------------------------------------------------------------------
+.DS_Store
+Thumbs.db
+
+# --- Logs / local config -----------------------------------------------------
+*.log
+logs/
+.env
+*.secret

@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "teleop_relay"
+version = "0.1.0"
+description = "NEV teleop — unified server (control plane + video plane in one process)."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "eclipse-zenoh",
+  "PyYAML",
+  "aiohttp",
+  "prometheus_client",
+]
+
+[project.scripts]
+teleop-server = "server_main:main"
+
+[tool.setuptools]
+py-modules = ["server_main"]
+packages = [
+  "teleop_server",
+  "teleop_server.config",
+  "teleop_server.telemetry",
+  "teleop_server.zenoh_utils",
+  "stream_server",
+  "stream_server.config",
+  "stream_server.zenoh_utils",
+  "teleop_contracts",
+]
+
+[tool.setuptools.package-dir]
+teleop_server = "teleop_server"
+"teleop_server.config" = "teleop_server/config"
+"teleop_server.telemetry" = "teleop_server/telemetry"
+"teleop_server.zenoh_utils" = "teleop_server/zenoh_utils"
+stream_server = "stream_server"
+"stream_server.config" = "stream_server/config"
+"stream_server.zenoh_utils" = "stream_server/zenoh_utils"
+teleop_contracts = "teleop_server/teleop_contracts/teleop_contracts"
+
+[tool.black]
+line-length = 99
+target-version = ["py310"]
