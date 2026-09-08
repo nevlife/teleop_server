@@ -1,0 +1,23 @@
+FROM python:3.12-slim
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1
+
+WORKDIR /app
+
+COPY pyproject.toml README.md server_main.py ./
+COPY teleop_v2_server ./teleop_v2_server
+COPY teleop_server ./teleop_server
+COPY stream_server ./stream_server
+
+RUN python -m pip install --no-cache-dir . \
+    && useradd --create-home --uid 10001 teleop
+
+USER teleop
+
+EXPOSE 13437/tcp
+
+HEALTHCHECK --interval=10s --timeout=3s --start-period=3s --retries=3 \
+  CMD python -c "import urllib.request; urllib.request.urlopen('http://127.0.0.1:13437/healthz', timeout=2)" || exit 1
+
+CMD ["teleop-v2-server"]

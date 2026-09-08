@@ -4,23 +4,30 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "teleop_relay"
-version = "0.1.0"
-description = "NEV teleop — unified server (control plane + video plane in one process)."
+version = "0.2.0"
+description = "NEV teleop v2 WebRTC signaling server with an optional legacy Zenoh relay."
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
+  "aiohttp>=3.9,<4",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=7"]
+legacy = [
   "eclipse-zenoh",
   "PyYAML",
-  "aiohttp",
   "prometheus_client",
 ]
 
 [project.scripts]
 teleop-server = "server_main:main"
+teleop-v2-server = "teleop_v2_server.main:main"
 
 [tool.setuptools]
 py-modules = ["server_main"]
 packages = [
+  "teleop_v2_server",
   "teleop_server",
   "teleop_server.config",
   "teleop_server.telemetry",

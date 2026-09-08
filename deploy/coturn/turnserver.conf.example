@@ -1,0 +1,23 @@
+# Teleop v2 development TURN relay.
+# Signaling uses TCP/13437 while TURN uses UDP/13437, so both can share the
+# numeric port. Forward UDP 50000-50049 as the media relay range as well.
+listening-port=13437
+listening-ip=0.0.0.0
+min-port=50000
+max-port=50049
+
+fingerprint
+lt-cred-mech
+realm=teleop.local
+user=teleop:teleop-dev
+
+# UDP-only keeps TCP/13437 available for the signaling service.
+no-tcp
+no-tls
+no-dtls
+no-cli
+no-multicast-peers
+stale-nonce=600
+
+# When the server is behind NAT, copy this file and set:
+# external-ip=PUBLIC_IP/PRIVATE_LAN_IP

@@ -1,0 +1,37 @@
+services:
+  signaling:
+    build:
+      context: .
+      dockerfile: Dockerfile.v2
+    restart: unless-stopped
+    environment:
+      TELEOP_BIND: 0.0.0.0
+      TELEOP_PORT: 13437
+      TELEOP_TURN_URL: turn:${TELEOP_PUBLIC_HOST:-127.0.0.1}:13437?transport=udp
+      TELEOP_TURN_USERNAME: teleop
+      TELEOP_TURN_PASSWORD: ${TELEOP_TURN_PASSWORD:-teleop-dev}
+    ports:
+      - "13437:13437/tcp"
+
+  turn:
+    image: coturn/coturn:4.17.2
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      DETECT_EXTERNAL_IP: ${TELEOP_DETECT_EXTERNAL_IP:-yes}
+    command:
+      - -n
+      - --log-file=stdout
+      - --listening-port=13437
+      - --min-port=50000
+      - --max-port=50049
+      - --fingerprint
+      - --lt-cred-mech
+      - --realm=teleop.local
+      - --user=teleop:${TELEOP_TURN_PASSWORD:-teleop-dev}
+      - --no-tcp
+      - --no-tls
+      - --no-dtls
+      - --no-cli
+      - --no-multicast-peers
+      - --stale-nonce=600
