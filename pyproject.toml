@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "teleop_relay"
-version = "0.2.0"
-description = "NEV teleop v2 WebRTC signaling server with an optional legacy Zenoh relay."
+version = "0.3.0"
+description = "NEV teleop WebRTC signaling server."
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
@@ -14,39 +14,13 @@ dependencies = [
 
 [project.optional-dependencies]
 test = ["pytest>=7"]
-legacy = [
-  "eclipse-zenoh",
-  "PyYAML",
-  "prometheus_client",
-]
 
 [project.scripts]
-teleop-server = "server_main:main"
+teleop-server = "teleop_v2_server.main:main"
 teleop-v2-server = "teleop_v2_server.main:main"
 
 [tool.setuptools]
-py-modules = ["server_main"]
-packages = [
-  "teleop_v2_server",
-  "teleop_server",
-  "teleop_server.config",
-  "teleop_server.telemetry",
-  "teleop_server.zenoh_utils",
-  "stream_server",
-  "stream_server.config",
-  "stream_server.zenoh_utils",
-  "teleop_contracts",
-]
-
-[tool.setuptools.package-dir]
-teleop_server = "teleop_server"
-"teleop_server.config" = "teleop_server/config"
-"teleop_server.telemetry" = "teleop_server/telemetry"
-"teleop_server.zenoh_utils" = "teleop_server/zenoh_utils"
-stream_server = "stream_server"
-"stream_server.config" = "stream_server/config"
-"stream_server.zenoh_utils" = "stream_server/zenoh_utils"
-teleop_contracts = "teleop_server/teleop_contracts/teleop_contracts"
+packages = ["teleop_v2_server"]
 
 [tool.black]
 line-length = 99

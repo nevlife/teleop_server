@@ -5,10 +5,8 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 
 WORKDIR /app
 
-COPY pyproject.toml README.md server_main.py ./
+COPY pyproject.toml README.md ./
 COPY teleop_v2_server ./teleop_v2_server
-COPY teleop_server ./teleop_server
-COPY stream_server ./stream_server
 
 RUN python -m pip install --no-cache-dir . \
     && useradd --create-home --uid 10001 teleop

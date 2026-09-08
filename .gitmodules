@@ -1,3 +1,0 @@
-[submodule "teleop_server/teleop_contracts"]
-	path = teleop_server/teleop_contracts
-	url = https://github.com/nevlife/teleop_contracts.git

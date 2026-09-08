@@ -38,3 +38,7 @@ Thumbs.db
 logs/
 .env
 *.secret
+
+# Removed legacy submodule may remain in an existing local checkout after
+# upgrading. It is not part of the server package or repository anymore.
+teleop_server/teleop_contracts/
