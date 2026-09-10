@@ -10,7 +10,7 @@ class ServerConfig:
     port: int = 13437
     hello_timeout_s: float = 5.0
     max_message_bytes: int = 1024 * 1024
-    turn_url: str = "turn:127.0.0.1:13437?transport=udp"
+    turn_url: str = "turn:127.0.0.1:13438?transport=udp"
     turn_username: str = "teleop"
     turn_password: str = "teleop-dev"
 

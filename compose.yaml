@@ -7,7 +7,7 @@ services:
     environment:
       TELEOP_BIND: 0.0.0.0
       TELEOP_PORT: 13437
-      TELEOP_TURN_URL: turn:${TELEOP_PUBLIC_HOST:-127.0.0.1}:13437?transport=udp
+      TELEOP_TURN_URL: turn:${TELEOP_PUBLIC_HOST:-127.0.0.1}:13438?transport=udp
       TELEOP_TURN_USERNAME: teleop
       TELEOP_TURN_PASSWORD: ${TELEOP_TURN_PASSWORD:-teleop-dev}
     ports:
@@ -22,9 +22,9 @@ services:
     command:
       - -n
       - --log-file=stdout
-      - --listening-port=13437
-      - --min-port=50000
-      - --max-port=50049
+      - --listening-port=13438
+      - --min-port=13439
+      - --max-port=13442
       - --fingerprint
       - --lt-cred-mech
       - --realm=teleop.local

@@ -1,17 +1,18 @@
 # Teleop v2 development TURN relay.
-# Signaling uses TCP/13437 while TURN uses UDP/13437, so both can share the
-# numeric port. Forward UDP 50000-50049 as the media relay range as well.
-listening-port=13437
+# Signaling uses TCP/13437; TURN listens on UDP/13438 and relays media on
+# UDP/13439-13442. Forward TCP 13437 and UDP 13438-13442 at the router.
+listening-port=13438
 listening-ip=0.0.0.0
-min-port=50000
-max-port=50049
+min-port=13439
+max-port=13442
 
 fingerprint
 lt-cred-mech
 realm=teleop.local
 user=teleop:teleop-dev
 
-# UDP-only keeps TCP/13437 available for the signaling service.
+# UDP-only keeps TCP/13437 available for the signaling service; the TURN
+# endpoint itself moved to UDP/13438 so the two protocols use distinct numbers.
 no-tcp
 no-tls
 no-dtls
