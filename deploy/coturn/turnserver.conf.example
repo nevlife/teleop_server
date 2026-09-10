@@ -1,11 +1,11 @@
 # Teleop v2 development TURN relay.
 # Signaling uses TCP/13437; TURN listens on UDP/13438 and relays media on
-# UDP/13439-13440 (two allocations: one rover + one operator). Forward
-# TCP 13437 and UDP 13438-13440 at the router.
+# UDP/13439 (single allocation: the rover's public address). Forward
+# TCP 13437 and UDP 13438-13439 at the router.
 listening-port=13438
 listening-ip=0.0.0.0
 min-port=13439
-max-port=13440
+max-port=13439
 
 fingerprint
 lt-cred-mech

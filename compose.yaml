@@ -24,7 +24,7 @@ services:
       - --log-file=stdout
       - --listening-port=13438
       - --min-port=13439
-      - --max-port=13440
+      - --max-port=13439
       - --fingerprint
       - --lt-cred-mech
       - --realm=teleop.local
